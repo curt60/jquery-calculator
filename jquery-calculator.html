@@ -113,35 +113,77 @@
   <script type="text/javascript">
 
     $(document).ready(function () {
-
+      //Declar vars and set to empty strings
       var num1 = "";
       var num2 = "";
       var operator = "";
-
-      $(".number").click(function () {
-        if (!operator) {
-          num1 = num1 + $(this).attr("value")
-          console.log(num1);
-        }
-        else {
-          num2 = num2 + $(this).attr("value")
-          console.log(num2);
-        }
-      });
-
-      $(".operator").click(function () {
-        operator = $(this).attr("value");
-        console.log(operator);
-      });
-
-
-      //embed in equal selector function
-      switch (operator) {
-        case "plus":
-          console.log("I'm working");
-          break;
+      var result = "";
+      //Create object that maps operator name to operator symbol
+      var operatorSymbol = {
+        "plus": "+",
+        "minus": "-",
+        "times": "x",
+        "divide": "&#247", //ASCI code for division symbol
+        "power": "^"
       }
 
+      //When number is pressed concatenate value to existing number string
+      $(".number").click(function () {
+        //If operator not yet selected then store value in num1
+        if (!operator) {
+          num1 = num1 + $(this).attr("value")
+          $("#first-number").html(num1);
+        }
+        //Else operator HAS been selected so store number in num2
+        else {
+          num2 = num2 + $(this).attr("value")
+          $("#second-number").html(num2);
+        }
+      });
+      
+      //When operator is clicked capture value and display corresonding symbol
+      $(".operator").click(function () {
+        operator = $(this).attr("value");
+        $("#operator").html(operatorSymbol[operator]);
+      });
+
+      //When '=' is pressed perform calculation and display results
+      $(".equal").click(function () {
+        //Perform calculation
+        switch (operator) {
+        case "plus":
+          result = parseInt(num1) + parseInt(num2);
+          break;
+        case "minus":
+          result = parseInt(num1) - parseInt(num2);
+          break;
+        case "times":
+          result = parseInt(num1) * parseInt(num2);
+          break;
+        case "divide":
+          result = parseInt(num1) / parseInt(num2);
+          break;        
+        case "power":
+          result = Math.pow(parseInt(num1), parseInt(num2));
+          break;  
+        }
+        
+        //Display result
+        $("#result").html(result);
+
+      });
+
+      //When clear button clicked reset all variables and clear the results panel
+      $(".clear").click(function () {
+        num1 = "";
+        num2 = "";
+        operator = "";
+        result = "";
+        $("#first-number").empty();
+        $("#operator").empty();
+        $("#second-number").empty();
+        $("#result").empty();
+      });
 
     });
 
