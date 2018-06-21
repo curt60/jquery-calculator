@@ -74,15 +74,29 @@
 
 $(document).ready(function() {
 
-    var numArray = [];
-    var numIndex = 0;
+    var num1 = "" ;
+    var num2 = "";
+    var operator ="";
 
     $(".number").click(function() {
-        numArray[numIndex] = $(".number").attr("value")
-        
+       if (!operator){
+        num1 = num1 + $(this).attr("value") 
+
+        console.log( num1);
+       }
+      else{
+        num2= num2 + $(this).attr("value") 
+        console.log( num2);
+      }
+       
     });
 
+   $(".operator").click(function() {
+        operator = $(this).attr("value") ;
 
+        console.log( operator);
+    });
+ 
 });
 
 </script>
