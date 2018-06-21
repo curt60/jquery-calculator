@@ -140,7 +140,7 @@
           $("#second-number").html(num2);
         }
       });
-      
+
       //When operator is clicked capture value and display corresonding symbol
       $(".operator").click(function () {
         operator = $(this).attr("value");
@@ -151,23 +151,23 @@
       $(".equal").click(function () {
         //Perform calculation
         switch (operator) {
-        case "plus":
-          result = parseInt(num1) + parseInt(num2);
-          break;
-        case "minus":
-          result = parseInt(num1) - parseInt(num2);
-          break;
-        case "times":
-          result = parseInt(num1) * parseInt(num2);
-          break;
-        case "divide":
-          result = parseInt(num1) / parseInt(num2);
-          break;        
-        case "power":
-          result = Math.pow(parseInt(num1), parseInt(num2));
-          break;  
+          case "plus":
+            result = parseInt(num1) + parseInt(num2);
+            break;
+          case "minus":
+            result = parseInt(num1) - parseInt(num2);
+            break;
+          case "times":
+            result = parseInt(num1) * parseInt(num2);
+            break;
+          case "divide":
+            result = parseInt(num1) / parseInt(num2);
+            break;
+          case "power":
+            result = Math.pow(parseInt(num1), parseInt(num2));
+            break;
         }
-        
+
         //Display result
         $("#result").html(result);
 
